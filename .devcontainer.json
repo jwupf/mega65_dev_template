@@ -1,8 +1,7 @@
 {
     "name": "Mega65 C/C++ development",
     "build" : {
-        "dockerfile": "Dockerfile"
-        
+        "dockerfile": "Dockerfile"        
     },
     "remoteUser": "vscode",
     "customizations": {
