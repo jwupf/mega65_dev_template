@@ -1,0 +1,19 @@
+{
+    "name": "Mega65 C/C++ development",
+    "build" : {
+        "dockerfile": "Dockerfile"
+        
+    },
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "codezombiech.gitignore",
+                "ms-vscode.makefile-tools",
+                "mhutchie.git-graph",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
