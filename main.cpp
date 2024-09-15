@@ -133,6 +133,7 @@ int main(void) {
   Sid* sid = (Sid*)0xd400;
   sid->voice1.freq_lo=0;
   sid->voice1.freq_hi=0x1f;
+  // split stufff is not working correctly ... attack/decay need to be combined ...
   sid->voice1.attack = 6;
   sid->voice1.decay = 1;
   sid->voice1.sustain=0xC;
