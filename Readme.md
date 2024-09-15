@@ -11,7 +11,7 @@ Run `xhost +local:docker` before starting vscode if you want to start X11 apps f
 ## XEMU build and installation
 
 ```bash
-sudo apt install alien fakeroot
+sudo apt install alien fakeroot libsdl2-dev libreadline-dev
 git clone https://github.com/lgblgblgb/xemu.git
 cd xemu
 build
@@ -22,8 +22,16 @@ dpkg -i build/bin/xemu_20240807161529_amd64.deb
 
 
 Autostart a disk image with xemu-xmega65:
-`xemu-xmega65 -8 main.d81 -autoload`
+`xemu-xmega65 -autoload -8 main.d81`
 
 ## building
 
 If building in VsCode with cmake extension, use "__unspec__" Kit, then the Cmake: Configure will figure it out.
+
+## Docker
+
+```bash
+sudo apt install docker.io
+sudo usermod -a -G docker $USER
+
+```
