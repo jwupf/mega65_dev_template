@@ -3,10 +3,7 @@
 ## SSH key sharing
 
 On the host run `ssh-add $HOME/.ssh/id_rsa`(assuming id_rsa is your key for accessing git repo) to add the key to the ssh agent. That way, it is automagically forwardet into the devcontainer.
-
-## X11/Wayland forwarding
-
-Run `xhost +local:docker` before starting vscode if you want to start X11 apps from within the container.
+Add it to ~/.profile to have this as default.
 
 ## XEMU build and installation
 
