@@ -27,7 +27,7 @@ void myputs(const char* str){
 class Key {
 public:
   Key(){
-    key = kbhit();    
+    key = kbhit();
   }
   ~Key(){
     if(key!=0)
@@ -49,7 +49,7 @@ int main(void) {
   clrscr();
 
   // gotoxy(0,24);
-  // myputs("F1 XXXXXXX");  
+  // myputs("F1 XXXXXXX");
   // myputs("F3 XXXXXXX");
   // myputs("F5 XXXXXXX");
   // myputs("F7 XXXXXXX");
@@ -72,7 +72,7 @@ int main(void) {
   // v.decay = 0x07;
   // v.sustain = 0x08;
   // v.release = 0x09;
-  
+
   // for(unsigned char i = 0; i<7;i++){
   //   gotoxy(0,i);
   //   cputhex(v.memory[i],2);
@@ -96,9 +96,9 @@ int main(void) {
   // sid.filter_mode_volume = 0xf;
 
   // while(true){
-    
 
-  
+
+
 
   //   switch(Key k; k.Get()){
   //     case 'a':
@@ -121,7 +121,7 @@ int main(void) {
   // // W = 33: GOTO 15
   // // W = 65: GOTO 15
   // // W = 129
-  
+
   // S[ 0] = 0;
   // S[ 1] = 0x1f;
   // S[ 5] = 97;
@@ -134,22 +134,27 @@ int main(void) {
   sid->voice1.freq_lo=0;
   sid->voice1.freq_hi=0x1f;
   // split stufff is not working correctly ... attack/decay need to be combined ...
-  sid->voice1.attack = 6;
-  sid->voice1.decay = 1;
-  sid->voice1.sustain=0xC;
-  sid->voice1.release=0x8;
+  // sid->voice1.da_reg = decay_attack{.decay = 1,.attack=6};
+  sid->voice1.da_reg.raw = 0x16;
+  // sid->voice1.attack = 6;
+  // sid->voice1.decay = 1;
+  // sid->voice1.rs_reg = release_sustain{.release = 0xc, .sustain=0x8};
+  sid->voice1.rs_reg.raw = 0xc8;
+  // sid->voice1.sustain=0xC;
+  // sid->voice1.release=0x8;
   //sid->voice1.gate = 1; // 0x11 -> 17
   //sid->voice1.triangle = 1;
-  sid->voice1.ctrl_bits = voice_ctrl{
-    .noise = 0,
-    .pulse=0,
-    .sawtooth = 0,
-    .triangle = 1,
-    .disable_osc=0,
-    .ring_mod_osc=0,
-    .sync_osc=0,
-    .gate = 1};
-  sid->voice1.ctrl = 0x11;
+  // sid->voice1.ctrl_bits = voice_ctrl{
+  //   .noise = 0,
+  //   .pulse=0,
+  //   .sawtooth = 0,
+  //   .triangle = 1,
+  //   .disable_osc=0,
+  //   .ring_mod_osc=0,
+  //   .sync_osc=0,
+  //   .gate = 1};
+  sid->voice1.ctrl_bits.raw = 0x11;
+
   //sid->memory[ 4] = 17;
   sid->filter_mode_volume = 0x0f;
 

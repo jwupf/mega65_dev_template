@@ -10,7 +10,8 @@ RUN git clone https://github.com/llvm-mos/llvm-mos.git /opt/llvm-mos-src
 RUN (mkdir /opt/llvm-mos && \
         cd /opt/llvm-mos && \
         cmake -C /opt/llvm-mos-src/clang/cmake/caches/MOS.cmake -G Ninja -S /opt/llvm-mos-src/llvm && \
-        ninja -j 3)
+	ninja)
+# For missing swap and 8GB or less RAM use: ninja -j 3)
 
 ENV PATH="/opt/llvm-mos/bin:${PATH}"
 

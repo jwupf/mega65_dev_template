@@ -36,6 +36,22 @@ union voice_ctrl
     };
 };
 
+union decay_attack{
+    uint8_t raw;
+    struct{
+        uint8_t decay : 4;
+        uint8_t attack : 4;
+    };
+};
+
+union release_sustain{
+    uint8_t raw;
+    struct{
+        uint8_t release : 4;
+        uint8_t sustain : 4;
+    };
+};
+
 union voice
 {
     uint8_t memory[7];
@@ -48,7 +64,6 @@ union voice
         uint8_t pw_hi : 4;
         union
         {
-            uint8_t ctrl : 8;
             voice_ctrl ctrl_bits;
             struct
             {
@@ -62,10 +77,20 @@ union voice
                 uint8_t gate : 1;
             };
         };
-        uint8_t decay : 4;
-        uint8_t attack : 4;
-        uint8_t release : 4;
-        uint8_t sustain : 4;
+        union {
+            decay_attack da_reg;
+            struct{
+                uint8_t decay : 4;
+                uint8_t attack : 4;
+            };
+        };
+        union{
+            release_sustain rs_reg;
+            struct{
+                uint8_t release : 4;
+                uint8_t sustain : 4;
+            };
+        };
     };
 };
 
