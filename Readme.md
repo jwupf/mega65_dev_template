@@ -1,5 +1,11 @@
 # MEGA65 DevEnv
 
+## RAM limitations
+
+Building llvm needs a lot of RAM ... 
+Change the `-j` option in line 13 ```	ninja -j 6)``` if you have more than 8 GB of RAM. Every compile process needs RAM. If the system runs out of RAM it will hang the computer.
+On a RaspberryPi with 8GB, use `-j 3` and get a thermos of tea :-)
+
 ## SSH key sharing
 
 On the host run `ssh-add $HOME/.ssh/id_rsa`(assuming id_rsa is your key for accessing git repo) to add the key to the ssh agent. That way, it is automagically forwardet into the devcontainer.
