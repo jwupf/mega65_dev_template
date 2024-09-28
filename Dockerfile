@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/devcontainers/base:debian
 
 RUN sed -i 's/^Components: main$/& contrib/' /etc/apt/sources.list.d/debian.sources &&\
     apt-get update &&\
-    apt-get install -y wget xz-utils build-essential cmake ninja-build git vice libsdl2-dev libgtk-3-dev libreadline-dev fakeroot alien
+    apt-get install -y wget xz-utils build-essential cmake ninja-build git vice libsdl2-dev libgtk-3-dev libreadline-dev fakeroot alien 7zip
 
 
 #ADD --keep-git-dir=true https://github.com/llvm-mos/llvm-mos.git /opt/llvm-mos-src    
@@ -31,9 +31,15 @@ RUN (mkdir /opt/mega65-libc && \
         make && \
         make install)
 
+WORKDIR /opt
+RUN wget https://files.mega65.org/files/m/m65tools-develo-173-235417-linux_bcbNLw.7z
+RUN mv m65tools-develo-173-235417-linux_bcbNLw.7z m65tools.7z
+RUN 7zz e /opt/m65tools.7z -o/opt/m65tools
+
 RUN chown -R 1000:1000 /opt/llvm-mos
 RUN chown -R 1000:1000 /opt/llvm-mos-sdk
 RUN chown -R 1000:1000 /opt/mega65-libc
+RUN chown -R 1000:1000 /opt/m65tools
 
 ENTRYPOINT [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
