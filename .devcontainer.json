@@ -14,5 +14,8 @@
                 "ms-azuretools.vscode-docker"
             ]
         }
-    }
+    },
+    "runArgs": [
+        "--network=host"
+    ]
 }
