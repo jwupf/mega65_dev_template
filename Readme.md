@@ -38,3 +38,9 @@ sudo apt install docker.io
 sudo usermod -a -G docker $USER
 
 ```
+
+## pushing *.prg to mega65
+
+Press 'Shift + Pound' on mega65 to enable ethernet. The power LED on the Mega65 wil start blinking green <-> yellow.
+
+Execute `/opt/m65tools/etherload -r path/to/your.prg` to load and run your program.
