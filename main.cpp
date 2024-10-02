@@ -102,6 +102,37 @@ union Sid
   };
 };
 
+// volatile void rasterInterruptHandler(){};
+
+// // start with rasterbeam interrup
+// class MyInterruptHandler{
+//   private:
+//   static MyInterruptHandler instance;  
+//   MyInterruptHandler(){
+//     //auto fun = [this](){this->doStuff();};
+//     uint8_t lowAddr = ((long)rasterInterruptHandler) & 0xff;
+//     uint8_t highAddr = ((long)rasterInterruptHandler) >> 0x8;
+//     asm volatile(
+//       "lda #0 \n\t\
+//       tax    \n\t\
+//       tay    \n\t\
+//       taz    \n\t\
+//       map  ; (disables interrupts) \n\t\
+//       ; all the interrupt config goes here \n\t\
+
+      
+//       eom "
+//       ::"R"(lowAddr),"R"(highAddr): );
+//   };
+
+//   volatile void doStuff(){
+
+//   };
+//   public:
+//   static MyInterruptHandler* GetInstance(){
+//     return &MyInterruptHandler::instance;
+//   };
+// };
 // void myputs(const char *str)
 // {
 //   cputs((unsigned char *)str);
@@ -110,7 +141,7 @@ union Sid
 // 80x25 Zeichen
 int main(void)
 {
-
+  MyInterruptHandler* ih = MyInterruptHandler::GetInstance();
   // conioinit();
   // clrscr();
 
@@ -152,7 +183,7 @@ int main(void)
   {
     //sid->memory[4] = 0x21; // sid.voice1.ctrl_bits.raw = 33; // gate + sawtooth
     //sid->voice1.ctrl_bits = 
-    voice_ctrl t = { .noise = 0, .pulse = 0, .sawtooth =1 ,.triangle=0,.disable_osc =0, .ring_mod_osc=0,.sync_osc=0,.gate = 1};
+    //voice_ctrl t = { .noise = 0, .pulse = 0, .sawtooth =1 ,.triangle=0,.disable_osc =0, .ring_mod_osc=0,.sync_osc=0,.gate = 1};
     sid->voice1.ctrl_bits.raw = 0x21;
     usleep(1000000);
     sid->voice1.ctrl_bits.raw = 0x20;// = {.sawtooth=1, .gate=0}; //sid->memory[4] = 0x20; // sid.voice1.ctrl_bits.raw = 32; // gate + sawtooth
